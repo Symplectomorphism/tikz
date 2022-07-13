@@ -26,8 +26,8 @@ other hand, $d = \abs{AC} = \abs{AE} + \abs{EC}$ so that
   \label{eq:diaglin}
 \end{equation}
 
-\subsection{Computing $\abs{XY}$, given $w$ and $h$}
-\label{ssec:compute_xy}
+\subsection{Computing $\abs{XY}$ and $r$, given $w$ and $h$}
+\label{ssec:compute_xyr}
 
 In order to compute $\abs{XY}$, form the right triangle whose horizontal and
 vertical sides are drawn in green in Figure~\ref{fig:solution}. The length of
@@ -42,33 +42,23 @@ have
 \end{equation}
 %
 where the second equality may be derived by substituting from
-equation~\eqref{eq:diagsq}.
-
-\subsection{Computing $r$, given $w$ and $h$}
-\label{ssec:compute_r}
-
-The right triangle $\triangle CAD$ provides the equality \[ \tan{2\theta} =
-\frac{2\tan{\theta}}{1-\tan^2{\theta}} = \frac{w}{h}, \] which implies the
-quadratic equation \[ \tan^2{\theta} + 2\nicefrac{h}{w}\tan{\theta} - 1 = 0. \]
-Solving for $\tan{\theta}$ such that $0 < \theta < \nicefrac{\pi}{2}$, we obtain
-\[ \frac{r}{h-r} = \tan{\theta} = \nicefrac{1}{w}(d-h), \] where the first 
-equality follows from the right triangle $\triangle EAX$. We can solve this
-equation for the radius, $r$, which provides the solution
+equation~\eqref{eq:diagsq}. The radius $r$ can be read off from
+equation~\eqref{eq:diaglin}.
 %
 \begin{equation}
-  r = \frac{h(d-h)}{w+d-h}.
+  r = \nicefrac{1}{2}(w+h-d)
   \label{eq:radius}
 \end{equation}
 
 \subsection{Computing $f$ and its inverse $f^{-1}$}
 
-The development of Sections~\ref{ssec:compute_r} and~\ref{ssec:compute_xy}
-readily yields $f: \mathbb{R}_+^2 \rightarrow \mathbb{R}_+^2$.
+The computation in the previous section determines $f:
+\mathbb{R}_+^2 \rightarrow \mathbb{R}_+^2$.
 %
 \begin{align}
   \begin{split}
     d &= \sqrt{w^2 + h^2}, \\
-    f(w,h) &= \left( \frac{h(d-h)}{w+d-h}, \sqrt{(d-w)^2 + (d-h)^2} \right).
+    f(w,h) &= \left( \nicefrac{1}{2}(w+h-d), \sqrt{(d-w)^2 + (d-h)^2} \right).
   \end{split}
   \label{eq:f}
 \end{align}
