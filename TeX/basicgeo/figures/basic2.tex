@@ -1,7 +1,7 @@
 \documentclass[tikz]{standalone}
 % \usetikzlibrary{intersections}
 \usetikzlibrary{angles}
-\input{../standalonepreamble.tex}
+\input{./standalonepreamble.tex}
 
 \begin{document}
 \tikzset{help lines/.style=very thin}
@@ -34,7 +34,8 @@
   \draw[densely dotted] (4.0,3) -- (4.0,3.55);
   \draw[<->] (1.0,3.275) -- node[fill=white]{$w-r$} (4.0,3.275);
 
-  \draw[color=green!65!red] (1.0,2.0) -- node[above, rotate=90]{$d-w$}(1.0,1.0);
+  \draw (1,2) -- (0,0);
+  \draw[color=green!65!red] (1.0,2.0) -- node[above, rotate=90,fill=white]{$d-w$}(1.0,1.0);
   \draw[color=green!65!red] (1.0,1.0) -- node[below]{$d-h$} (3.0,1.0);
 
 
@@ -55,6 +56,15 @@
           scale=0.5, angle eccentricity=.5, pic text=.] {right angle = C--E--X};
   \draw[color=blue!50, xshift=1cm, yshift=2cm, rotate=-53.13010235415598] (0,0)
           -- node[right] {$r$} (1.0,0.0);
+
+  \draw (5.6mm,4.2mm) arc [start angle=36.86989764584402, end
+          angle=63.43494882292201, radius=7mm];
+  \draw (3.1304951684997055mm,6.260990336999411mm) arc [start angle=63.43494882292201, end angle=90, radius=7mm];
+  \draw (50.152423234383015:5mm) node {$\theta$};
+%   \draw (76.71747441146101:5mm) node[font=\large] {$\theta$};
+  \draw (76.71747441146101:5mm) node[] {$\theta$};
+
+%   \draw (C) -- (A) -- (X) pic [draw=black, angle radius=12mm, "$\theta$"] {angle = C--A--X};
 \end{tikzpicture}
 
 \end{document}
