@@ -46,5 +46,23 @@
 \end{tikzpicture}
 
 
+\begin{tikzpicture}[
+    node distance=5mm and 5mm,
+    terminal/.append style={rectangle,rounded corners=3mm},
+    skip loop/.style={to path={-- ++(0,#1) -| (\tikztotarget)}}
+  ]
+  \node (ui1)   [nonterminal]                      {unsigned integer};
+  \node (dot)   [terminal,right=of ui1]            {.};
+  \node (digit) [terminal,right=of dot]            {digit};
+  \node (E)     [terminal,right=of digit]          {E};
+  \node (plus)  [terminal,above right=of E]        {+};
+  \node (minus) [terminal,below right=of E]        {-};
+  \node (ui2)   [nonterminal,below right=of plus]  {unsigned integer};
+
+  \path (dot)   edge[->]                   (digit)  % simple edges
+        (digit) edge[->]                   (E)
+        ($ (digit.east)!0.5!(E.west) $)
+                edge[->,skip loop=-5mm] ($ (digit.west)!0.5!(dot.east) $);
+\end{tikzpicture}
 
 \end{document}
