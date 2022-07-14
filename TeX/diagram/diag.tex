@@ -1,0 +1,50 @@
+\documentclass[tikz]{standalone}
+\input{../standalonepreamble.tex}
+\usetikzlibrary{shapes.misc}
+
+\tikzset{nonterminal/.style={
+  % The shape:
+  rectangle,
+  % The size:
+  minimum size=6mm,
+  % The border:
+  very thick,
+  draw=red!50!black!50,
+  % The filling:
+  top color=white,
+  bottom color=red!50!black!20,
+  % Font:
+  font=\itshape,
+  }
+}
+
+\tikzset{terminal/.style={
+  % The shape:
+  rounded rectangle,
+  minimum size=6mm,
+  % The rest
+  very thick,draw=black!50,
+  top color=white,bottom color=black!20,
+  font=\ttfamily,
+  }
+}
+
+
+
+\begin{document}
+
+\begin{tikzpicture}[node distance=5mm]
+  \node [nonterminal] {unsigned integer};
+\end{tikzpicture}
+
+\begin{tikzpicture}[node distance=5mm,
+        text height=1.5ex,text depth=0.25em
+  ]
+  \node (dot)   [terminal]                {.};
+  \node (digit) [terminal,right=of dot]   {digit};
+  \node (E)     [terminal,right=of digit] {E};
+\end{tikzpicture}
+
+
+
+\end{document}
