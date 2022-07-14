@@ -4,7 +4,7 @@ f(x) = begin
     x = sort(x; rev=true)
     d = norm(x)
     return [
-        x[2]*(d-x[2])/(x[1]-x[2]+d),
+        1/2*(sum(x)-d),
         norm([d-x[1], d-x[2]])
     ]
 end
@@ -16,5 +16,5 @@ g(x) = begin
 end
 
 
-x = rand(1:0.1:10,2); 
-display( sort(x; rev=true) ≈ g(f(x)) )
+x = rand(1:0.1:100,2); 
+display( sort(x; rev=true) ≈ (g∘f)(x) )

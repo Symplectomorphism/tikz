@@ -1,17 +1,49 @@
 \documentclass[tikz]{standalone}
 \input{../standalonepreamble.tex}
+\usetikzlibrary{through}
 
 \begin{document}
 
 \begin{tikzpicture}
   \coordinate [label=left:$A$] (A) at ($ (0,0) + 0.1*(rand,rand) $);
   \coordinate [label=right:$B$] (B) at ($ (1.25,0.25) + 0.1*(rand,rand) $);
-  \draw[] (A) -- (B);
+  \draw[name path=A--B] (A) -- (B);
 
-  \draw (A) let
-              \p1 = ($ (B) - (A) $)
-            in
-              circle ({veclen(\x1,\y1)});
+%  \draw (A) let
+%              \p1 = ($ (B) - (A) $),
+%              \n2 = {veclen(\x1,\y1)}
+%            in
+%              (A) circle (\n2)
+%              (B) circle (\n2);
+
+  \node (D) [name path=pD,draw,circle through=(B),label=left:$D$] at (A) {};
+  \node (E) [name path=pE,draw,circle through=(A),label=right:$E$] at (B) {};
+
+  % Name the coordinates, but do not draw anything:
+  \path [name intersections={of=pD and pE, by={[label=above:$C$]C,
+          [label=below:$C'$]C'}}];
+
+  \draw [name path=C--C', red] (C) -- (C');
+
+  \path [name intersections={of=A--B and C--C',by=F}];
+  \node [fill=red,inner sep=1pt,label=-45:$F$] at (F) {};
+  
+%  \coordinate [label=above:$C$] (C) at (intersection-1);
+%
+%  \draw [red] (A) -- (C);
+%  \draw [red] (B) -- (C);
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+  \coordinate [label=left:$A$]  (A) at ($ (0,0) + 0.5*(rand,rand) $);
+  \coordinate [label=right:$B$] (B) at ($ (0.75,0.25) + 0.5*(rand,rand) $);
+  \coordinate [label=above:$C$] (C) at ($ (1,1.5) + 0.5*(rand,rand) $);
+  \draw (A) -- (B) -- (C);
+%   \node [fill=red,inner sep=1pt,label=below:$X$] (X) at ($ (A)!.5!(B) $) {};
+  \node [fill=red,inner sep=1pt,label=above:$D$] (D) at 
+          ($ (A) ! 0.5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  \draw (A) -- (D) -- (B);
 \end{tikzpicture}
 
 \end{document}
