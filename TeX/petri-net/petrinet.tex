@@ -11,15 +11,28 @@
    size=6mm},
    transition/.style={rectangle,draw=black!50,fill=black!20,thick,inner 
    sep=0pt,minimum size=4mm},
-   every label/.style={red}]
+   every label/.style={red},
+   bend angle=45,
+   pre/.style={<-,shorten <=1pt,>={Stealth[round]},semithick},
+   post/.style={->,shorten >=1pt,>={Stealth[round]},semithick},
+  ]
   \node[place]      (waiting)                            {};
   \node[place]      (critical)       [below=of waiting]  {};
   \node[place]      (semaphore)      [below=of critical,
                                       label=above:$s\leq3$] {};
-  \node[transition] (leave critical) [right=of critical] {};
-  \node[transition] (enter critical) [left=of critical]  {};
+  \node[transition] (leave critical) [right=of critical] {}
+    edge [pre]                                 (critical)
+    edge [post,bend right] node[auto,swap] {2} (waiting)
+    edge [pre, bend left]                      (semaphore);
+  \node[transition] (enter critical) [left=of critical]  {}
+    edge [post]            (critical)
+    edge [pre,bend left]   (waiting)
+    edge [post,bend right] (semaphore);
 
-  \draw [->] (enter critical.east) -- (critical.west);
+  \begin{scope}[on background layer]
+    \node [fill=black!30,fit=(waiting) (critical) (semaphore) (leave critical)
+            (enter critical)] {};
+  \end{scope}
 \end{tikzpicture}
 
 \end{document}
