@@ -4,7 +4,12 @@
 \begin{document}
 
 \begin{tikzpicture}
-  \coordinate (A) at (0,0);
+  \coordinate [label=left:\textcolor{blue}{$A$}] (A) at ($ (0,0) +
+          0.1*(rand,rand) $);
+  \coordinate [label=right:\textcolor{blue}{$B$}] (B) at ($ (1.25,0.25) +
+          0.1*(rand,rand) $);
+
+  \draw[blue] (A) -- (B);
 \end{tikzpicture}
 
 \end{document}
