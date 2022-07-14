@@ -40,10 +40,17 @@
   \coordinate [label=right:$B$] (B) at ($ (0.75,0.25) + 0.5*(rand,rand) $);
   \coordinate [label=above:$C$] (C) at ($ (1,1.5) + 0.5*(rand,rand) $);
   \draw (A) -- (B) -- (C);
-%   \node [fill=red,inner sep=1pt,label=below:$X$] (X) at ($ (A)!.5!(B) $) {};
-  \node [fill=red,inner sep=1pt,label=above:$D$] (D) at 
-          ($ (A) ! 0.5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
-  \draw (A) -- (D) -- (B);
+
+  \coordinate [label=above:$D$] (D) at 
+    ($ (A) ! 0.5 ! (B) ! {sin(60)*2} ! 90:(B) $) {};
+  
+  \node (H) [name path=pH, label=135:$H$,draw,circle through=(C)] at (B) {};
+  \draw (D) -- ($ (D) ! 3.5 ! (B) $) coordinate [label=below:$F$] (F);
+  \draw (D) -- ($ (D) ! 3.5 ! (A) $) coordinate [label=below:$E$] (E);
+
+  \path [name path=B--F] (B) -- (F);
+  \path [name intersections={of=pH and B--F,by={[label=left:$G$]G}}];
+  \fill [red,opacity=0.5] (G) circle (2pt);
 \end{tikzpicture}
 
 \end{document}
